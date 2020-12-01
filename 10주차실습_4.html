@@ -1,0 +1,64 @@
+<!-- 계산기를 만들어라. 
+    C, CE는 같은 기능 : 입력창 내용 지우고 처음처럼 0 출력 -->
+
+<!DOCTYPE html>
+<html>
+
+<head>
+    <title>계산기 만들기</title>
+    <style>
+        input{
+            width : 50px;
+            height : 20px;
+            margin: 5px;
+        }
+    </style>
+</head>
+
+<body>
+    <h3>계산기 만들기</h3>
+    <hr>
+    <input type="text" value="0" id="cal" style="width:250px"><br>
+    <input type="button" value="BACK" onclick="back()">
+    <input type="button" value="CE" onclick="ce()">
+    <input type="button" value="C" onclick="ce()">
+    <input type="button" value="=" onclick="calc()"><br>
+    <input type="button" value="7" onclick="val('7')">
+    <input type="button" value="8" onclick="val('8')">
+    <input type="button" value="9" onclick="val('9')">
+    <input type="button" value="/" onclick="val('/')"><br>
+    <input type="button" value="4" onclick="val('4')">
+    <input type="button" value="5" onclick="val('5')">
+    <input type="button" value="6" onclick="val('6')">
+    <input type="button" value="*" onclick="val('*')"><br>
+    <input type="button" value="1" onclick="val('1')">
+    <input type="button" value="2" onclick="val('2')">
+    <input type="button" value="3" onclick="val('3')">
+    <input type="button" value="-" onclick="val('-')"><br>
+    <input type="button" value="0" onclick="val('0')">
+    <input type="button" value="+" onclick="val('+')">
+    <input type="button" value="NONE">
+    <input type="button" value="NONE"> 
+   
+   
+    <script>
+        function calc(){
+            cal.value = eval(cal.value); //eval()함수 이용하여 입력창의 수식을 계산함
+        }
+        function ce(){ //입력창 내용 지우고 처음처럼 0 출력
+            cal.value = "0";
+        }
+        function back(){
+            cal.value = cal.value.substring(0, cal.value.length-1);  
+            //substring으로 0부터 value길이에서 -1한 길이 출력. 즉 한칸 back한다
+        }
+        function val(n){
+            if(cal.value == "0"){ //입력창의 값이 0이면
+                cal.value=""; //계산을 위해 0이 없는 상태로 초기화한다
+            }
+            cal.value = cal.value + n; //입력창에 입력받은 버튼을 추가
+        }
+    </script>
+</body>
+
+</html>

@@ -1,0 +1,66 @@
+<!-- 리스트를 만들고 아이템 영역 안에 마우스가 들어오면 
+    다음과 같이 자세한 설명을 출력하도록 작성하라.-->
+
+<!DOCTYPE html>
+<html>
+
+<head>
+    <title>아이템에 마우스를 올리면 설명 출력</title>
+    <script>
+        var list = ["자전거를 탄다",
+            "책을 읽는다",
+            "운동을 한다",
+            "코딩 연습"]
+        var Div;
+        function init() {
+            Div = document.getElementById("Div");
+            var li = document.getElementsByTagName("li"); 
+            //li 태그를 가진 배열
+            for (i = 0; i < li.length; i++) {
+                li[i].addEventListener("mouseover", over); 
+                //onmouserover 리스너로 over() 등록
+                li[i].addEventListener("mouseout", out); 
+                //onmouseout 리스너로 out()등록
+            }
+        }
+        function over(e) {
+            var n = parseInt(e.target.id); 
+            //event 발생시킨 객체의 id를 Int형 변환함(0~3까지의 정수)
+            setDiv(list[n], e); 
+            //0부터 3까지의 정수 n에 대하여 리스트의 인덱스로 사용
+        }
+        function setDiv(text, e) {
+            Div.innerHTML = text;
+            Div.style.left = e.x + "px"; 
+            //마우스 위치에 텍스트 상자 생성
+            Div.style.top = e.y + "px"; 
+            //마우스 위치에 텍스트 상자 생성
+            Div.style.width = "100px";
+            Div.style.height = "50px";
+            Div.style.visibility = "visible"; 
+            //마우스 올렸을 때 visibility = visible
+            Div.style.background = "skyblue"; 
+            Div.style.border = "1px solid green";
+        }
+        function out() {
+            Div.style.visibility = "hidden"; 
+            //마우스 뗐을 때 visibility = hidden
+        }
+    </script>
+</head>
+
+<body onload="init()"> 
+    <h3>아이템에 마우스를 올리면 설명 출력</h3>
+    <hr>
+    여름 방학 때 하고 싶은 것들
+    <ul>
+        <li id="0">자전거로 대한민국 일주</li>
+        <li id="1">책 100권 읽기</li>
+        <li id="2">철인 3종 경기 준비</li>
+        <li id="3">자바스크립트 정복</li>
+    </ul>
+    <div id="Div" style="position:absolute"></div>
+
+</body>
+
+</html>
